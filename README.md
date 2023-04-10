@@ -1,1 +1,1 @@
-###Image Segmentation using Genetic Algorithm
+### Image Segmentation using Genetic Algorithm
