@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 # Define the fitness function using otus method
 def fitness_func(threshold, hist):
+
     # Compute the between-class variance for the given threshold
     w1 = np.sum(hist[:threshold])
     w2 = np.sum(hist[threshold:])
@@ -51,7 +52,7 @@ def genetic_algorithm(hist, population_size=100, num_generations=20, mutation_ra
     return fittest_threshold
 
 # convert to grayscale
-img = cv2.imread('images/f14.tif')
+img = cv2.imread('images/nuc.png')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 hist, _ = np.histogram(gray, bins=256)
@@ -61,7 +62,16 @@ threshold = genetic_algorithm(hist)
 
 # Threshold the image and display the result
 binary = cv2.threshold(gray, threshold, 255, cv2.THRESH_BINARY)[1]
+
+#make window dimensions resizable
+cv2.namedWindow('binary image', cv2.WINDOW_NORMAL)
+cv2.namedWindow('original image', cv2.WINDOW_NORMAL)
+cv2.resizeWindow("binary image", 300, 700)
+cv2.resizeWindow("original image", 300, 700)
+
 cv2.imshow('binary image', binary)
+cv2.imshow('original image', img)
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
@@ -73,3 +83,4 @@ cv2.destroyAllWindows()
 
 
 #can take user input for crossover and mutation rate 
+# kapur;s entropy 
